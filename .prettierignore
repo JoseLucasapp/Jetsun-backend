@@ -1,0 +1,7 @@
+**/node_modules
+*.eslintrc
+*.build
+*.log
+*.env
+tsconfig.json
+readme.md
