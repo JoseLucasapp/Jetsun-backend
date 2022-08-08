@@ -1,3 +1,3 @@
-import { AppServer } from "./config/server";
+import { AppServer } from './config/server';
 
-new AppServer()
+new AppServer();

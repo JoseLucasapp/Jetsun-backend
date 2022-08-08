@@ -8,7 +8,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "nodemon ./src/index.ts",
-    "format": "prettier --config .prettierrc \"./**/*.{js,ts,jsx,tsx,css,md,json}\" --write"
+    "format": "prettier --config .prettierrc.json \"./**/*.{js,ts,jsx,tsx,css,md,json}\" --write"
   },
   "devDependencies": {
     "@types/cors": "^2.8.12",
