@@ -1,6 +1,4 @@
-import mongoose from 'mongoose';
-
 export interface FellowInterface {
-  _id: mongoose.Types.ObjectId;
+  _id: string;
   username: string;
 }

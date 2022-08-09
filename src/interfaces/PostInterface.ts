@@ -7,5 +7,5 @@ export interface PostInterface {
   publishedAt: Date;
   agree: number;
   disagree: number;
-  userId: mongoose.Types.ObjectId;
+  userId: string;
 }

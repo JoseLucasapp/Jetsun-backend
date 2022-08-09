@@ -7,33 +7,30 @@ import { FellowInterface } from 'interfaces/FellowInterface';
 export class Fellows implements FellowsProtocol {
   constructor() {}
 
-  async getFellows(
-    userId: Types.ObjectId,
-  ): Promise<UserFellowsInterface | null> {
-    const userFellows = await FellowsModel.findOne({ userId });
+  async getFellows(userId: string): Promise<UserFellowsInterface | null> {
+    const userFellows = await FellowsModel.findOne({ userId }).select(
+      'userId fellows',
+    );
 
     return userFellows;
   }
 
   async updateUserFellows(
-    userId: Types.ObjectId,
+    userId: string,
     fellow: FellowInterface,
-  ): Promise<void> {
+  ): Promise<string> {
     const getUserFellows = await this.getFellows(userId);
 
     if (getUserFellows) {
       await this.addNewFellow(userId, fellow);
+      return 'New fellow';
     }
-    if (!getUserFellows) {
-      const userFellows = new FellowsModel({ userId, fellows: [fellow] });
-      await userFellows.save();
-    }
+    const userFellows = new FellowsModel({ userId, fellows: [fellow] });
+    await userFellows.save();
+    return 'New fellow';
   }
 
-  async addNewFellow(
-    userId: Types.ObjectId,
-    fellow: FellowInterface,
-  ): Promise<void> {
+  async addNewFellow(userId: string, fellow: FellowInterface): Promise<void> {
     await FellowsModel.updateOne(
       { userId },
       { $push: { fellows: fellow } },
@@ -42,15 +39,15 @@ export class Fellows implements FellowsProtocol {
     });
   }
 
-  async removeFellow(
-    userId: Types.ObjectId,
-    fellow: FellowInterface,
-  ): Promise<void> {
+  async removeFellow(userId: string, fellowUsername: string): Promise<string> {
     await FellowsModel.updateOne(
       { userId },
-      { $pull: { fellows: { id: fellow._id } } },
+      { $pull: { fellows: { username: fellowUsername } } },
+      { safe: true, multi: false },
     ).exec((err) => {
       if (err) throw err;
     });
+
+    return 'Fellow removed';
   }
 }

@@ -5,12 +5,12 @@ const FellowsModel = new mongoose.Schema<UserFellowsInterface>({
   userId: mongoose.Types.ObjectId,
   fellows: [
     {
-      _id: mongoose.Types.ObjectId,
+      _id: String,
       username: String,
     },
   ],
 });
 
-const Model = mongoose.model<UserFellowsInterface>('users', FellowsModel);
+const Model = mongoose.model<UserFellowsInterface>('userFellows', FellowsModel);
 
 export default Model;

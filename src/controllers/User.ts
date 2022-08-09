@@ -44,11 +44,9 @@ export class UserController {
 
   async getAllUsers(req: Request, res: Response) {
     try {
-      res
-        .status(200)
-        .json({
-          data: await this.user.getAllUsers(req.query.username?.toString()),
-        });
+      res.status(200).json({
+        data: await this.user.getAllUsers(req.query.username?.toString()),
+      });
     } catch (err) {
       res.status(500).json({ error: err });
     }
@@ -56,11 +54,9 @@ export class UserController {
 
   async login(req: Request, res: Response) {
     try {
-      res
-        .status(200)
-        .json({
-          data: await this.user.login(req.body.username, req.body.password),
-        });
+      res.status(200).json({
+        data: await this.user.login(req.body.username, req.body.password),
+      });
     } catch (err) {
       res.status(500).json({ error: err });
     }
