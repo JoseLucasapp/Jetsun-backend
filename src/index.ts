@@ -1,3 +1,5 @@
-import { AppServer } from './config/server';
+import AppServer from './config/server';
 
-new AppServer();
+const port = process.env.PORT || 3333;
+
+AppServer.listen(port, () => console.log(`Server running on port ${port}`));

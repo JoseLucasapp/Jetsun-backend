@@ -5,7 +5,7 @@ import cors from 'cors';
 
 import Routes from './routes';
 
-export class AppServer {
+class AppServer {
   public express: express.Application;
   private router: express.Router;
 
@@ -29,3 +29,5 @@ export class AppServer {
     new Routes(this.router);
   }
 }
+
+export default new AppServer().express;
