@@ -1,7 +1,7 @@
 import { PostInterface } from '../interfaces/PostInterface';
 import mongoose from 'mongoose';
 
-const PostModel = new mongoose.Schema({
+const PostModel = new mongoose.Schema<PostInterface>({
   title: {
     type: String,
     require: true,
@@ -16,6 +16,7 @@ const PostModel = new mongoose.Schema({
   agree: {
     type: Number,
   },
+  interacts: [{ userId: String, action: String }],
   publishedAt: {
     type: Date,
     default: Date.now(),

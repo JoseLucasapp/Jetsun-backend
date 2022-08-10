@@ -8,4 +8,5 @@ export interface PostInterface {
   agree: number;
   disagree: number;
   userId: string;
+  interacts: [{ userId: string }];
 }

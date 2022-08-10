@@ -18,14 +18,9 @@ export class FellowsController {
 
   async updateUserFellows(req: Request, res: Response) {
     try {
-      res
-        .status(200)
-        .json({
-          data: await this.fellows.updateUserFellows(
-            req.params.userId,
-            req.body,
-          ),
-        });
+      res.status(200).json({
+        data: await this.fellows.updateUserFellows(req.params.userId, req.body),
+      });
     } catch (err) {
       res.status(500).json({ error: err });
     }
@@ -33,14 +28,12 @@ export class FellowsController {
 
   async removeFellow(req: Request, res: Response) {
     try {
-      res
-        .status(200)
-        .json({
-          data: await this.fellows.removeFellow(
-            req.params.userId,
-            req.params.username,
-          ),
-        });
+      res.status(200).json({
+        data: await this.fellows.removeFellow(
+          req.params.userId,
+          req.params.username,
+        ),
+      });
     } catch (err) {
       res.status(500).json({ error: err });
     }

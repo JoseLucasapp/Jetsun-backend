@@ -27,8 +27,8 @@ export class PostController {
 
   async agree(req: Request, res: Response) {
     try {
-      await this.post.agree(req.params.id);
-      res.status(200).json({ msg: '+1 agree' });
+      await this.post.agree(req.params.id, req.params.userId);
+      res.status(200).json({ msg: 'agree' });
     } catch (err) {
       res.status(500).json({ error: err });
     }
@@ -36,8 +36,8 @@ export class PostController {
 
   async disagree(req: Request, res: Response) {
     try {
-      await this.post.disagree(req.params.id);
-      res.status(200).json({ msg: '+1 disagree' });
+      await this.post.disagree(req.params.id, req.params.userId);
+      res.status(200).json({ msg: 'disagree' });
     } catch (err) {
       res.status(500).json({ error: err });
     }
